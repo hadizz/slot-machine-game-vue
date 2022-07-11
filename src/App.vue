@@ -1,5 +1,5 @@
 <script setup>
-import {ref, onMounted} from 'vue'
+import {ref} from 'vue'
 
 // states and variables
 const CHERRY = 'C';
@@ -23,10 +23,6 @@ const third = ref('X');
 
 const credit = ref(10);
 const userCredit = ref(0);
-
-// lifecycles
-onMounted(() => {
-})
 
 // methods
 const chance = (value) => {
@@ -87,10 +83,6 @@ const roll = () => {
         <td>{{ third }}</td>
       </tr>
     </table>
-    <button @click="plus10">+10</button>
-    <button @click="minus10">-10</button>
-    <button @click="win">win</button>
-    <br>
 
     <button @click="roll">roll</button>
 
