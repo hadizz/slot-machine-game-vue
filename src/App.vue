@@ -78,6 +78,7 @@ const hoverOnCashOut = () => {
 
 <template>
   <main>
+    <h1 class="text-center">🎰 Online Slot Machine Game</h1>
     <div class="d-flex flex-over-center">
       <table>
         <tr>

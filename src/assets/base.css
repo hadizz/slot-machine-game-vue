@@ -73,7 +73,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 .d-flex {
   display: flex;
 }
@@ -93,4 +92,8 @@ body {
 
 .mt-8 {
   margin-top: 8px;
+}
+
+.text-center {
+  text-align: center;
 }
