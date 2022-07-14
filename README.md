@@ -1,14 +1,12 @@
-# slot-machine-game-vue
+# slot machine game vue 🎰
 
-This template should help get you started developing with Vue 3 in Vite.
+This is my answer to a company interview assessment.
 
-## Recommended IDE Setup
+![Screen Shot 2022-07-14 at 20 24 28](https://user-images.githubusercontent.com/60828165/179024837-dbc17c20-a84e-4b2e-b682-b59e78667bb1.png)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Objective
+a simple slot machine game, with a little twist. Build it to ensure that the house always wins!
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
