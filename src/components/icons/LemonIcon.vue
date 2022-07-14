@@ -1,5 +1,5 @@
 <template>
-  <svg class="svg-icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+  <svg id='lemon' class="svg-icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
        viewBox="0 0 1024 1024" width="36" height="36">
     <path
         d="M167.4 663C95.7 537.7 137 361 271.3 248.3c124.8-104.7 290-120.7 401.8-48.4 2.4-2.6 4.9-5.1 7.7-7.5 27.6-23.1 65.8-23 85.3 0.3s13 60.9-14.5 84.1l-1.5 1.2C829 403.7 789 586.1 651.5 701.5c-127.8 107.3-298.2 121.5-410 42.9-0.8 0.8-1.7 1.5-2.5 2.2-27.6 23.1-65.8 23-85.3-0.3-19.3-23-13.1-60.2 13.7-83.3z"

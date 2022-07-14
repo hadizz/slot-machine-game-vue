@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" x="0px"
+  <svg xmlns="http://www.w3.org/2000/svg" id="cherry" x="0px"
        y="0px" viewBox="0 0 413.953 413.953" style="enable-background:new 0 0 413.953 413.953;" xml:space="preserve"
        width="36" height="36">
 <g>

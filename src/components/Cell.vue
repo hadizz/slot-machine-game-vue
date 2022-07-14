@@ -96,8 +96,6 @@ export default {
   animation-iteration-count: infinite;
   animation-delay: -2s;
   animation-timing-function: ease-in-out;
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
 }
 
 @keyframes slideUpOut {
