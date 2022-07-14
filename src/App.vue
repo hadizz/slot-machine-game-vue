@@ -23,6 +23,7 @@ const cashOutRef = ref(null);
 // methods
 
 const roll = () => {
+  if (credit.value === 0) return;
   spinning_first.value = true;
   first.value = X;
   spinning_second.value = true;
