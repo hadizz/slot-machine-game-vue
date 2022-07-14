@@ -19,4 +19,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: deploy to github pages
-        run: npm run deploy
+        run: npm i && npm run deploy
