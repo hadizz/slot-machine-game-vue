@@ -1,7 +1,9 @@
 <script setup>
 import {ref} from 'vue'
-import {ITEMS, SCORES} from "./constants";
 import Cell from './components/Cell.vue'
+import {chance, random} from "./utilities";
+import {calcScore} from "./logic";
+import {X} from "./constants";
 
 // states and variables
 const first = ref('X');
@@ -19,56 +21,34 @@ const canCashOut = ref(true);
 const cashOutRef = ref(null);
 
 // methods
-const chance = (value) => {
-  return Math.random() * 100 < value;
-}
-
-const random = (min, max) => {
-  return min + Math.floor(Math.random() * (max - min + 1));
-}
-
-const decideToReRoll = () => {
-  if (credit.value < 40) {
-    return false
-  } else if (credit.value >= 40 && credit.value < 60) {
-    return chance(30);
-
-  } else if (credit.value >= 60) {
-    return chance(60);
-  }
-}
-
-const calcScore = () => {
-  const getRandomNumber = () => random(0, ITEMS.length - 1)
-  const randomItem = () => ITEMS[getRandomNumber()]
-  first.value = randomItem()
-  second.value = randomItem()
-  third.value = randomItem()
-  if (first.value === second.value && second.value === third.value) {
-    if (decideToReRoll()) {
-      return calcScore();
-    } else {
-      return SCORES[first.value];
-    }
-  }
-  return false
-}
 
 const roll = () => {
   spinning_first.value = true;
+  first.value = X;
   spinning_second.value = true;
+  second.value = X;
   spinning_third.value = true;
-  const newScore = calcScore()
+  third.value = X;
+
+  const {firstItem, secondItem, thirdItem, score} = calcScore(credit.value)
+  console.log({firstItem, secondItem, thirdItem, score})
 
   // fake waiting
   setTimeout(() => {
 
-    setTimeout(() => spinning_first.value = false, 1000)
-    setTimeout(() => spinning_second.value = false, 2000)
+    setTimeout(() => {
+      spinning_first.value = false;
+      first.value = firstItem;
+    }, 1000)
+    setTimeout(() => {
+      spinning_second.value = false;
+      second.value = secondItem;
+    }, 2000)
     setTimeout(() => {
       spinning_third.value = false;
-      if (!!newScore) {
-        credit.value += newScore
+      third.value = thirdItem;
+      if (!!score) {
+        credit.value += score
       } else {
         credit.value--;
       }
