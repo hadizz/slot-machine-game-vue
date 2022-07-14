@@ -1,0 +1,25 @@
+name: deploy to github pages
+
+on:
+  push:
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  unit_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm ci && npm run test:unit
+
+  build_and_preview:
+    needs: [unit_test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: npm ci
+        run: npm ci
+
+      - name: deploy to github pages
+        run: npm run deploy
