@@ -11,6 +11,10 @@ const third = ref('X');
 const credit = ref(10);
 const userCredit = ref(0);
 
+const spinning_first = ref(false);
+const spinning_second = ref(false);
+const spinning_third = ref(false);
+
 // methods
 const chance = (value) => {
   return Math.random() * 100 < value;
@@ -48,12 +52,26 @@ const calcScore = () => {
 }
 
 const roll = () => {
+  spinning_first.value = true;
+  spinning_second.value = true;
+  spinning_third.value = true;
   const newScore = calcScore()
-  if (!!newScore) {
-    credit.value += newScore
-  } else {
-    credit.value--;
-  }
+
+  // fake waiting
+  setTimeout(() => {
+
+    setTimeout(() => spinning_first.value = false, 1000)
+    setTimeout(() => spinning_second.value = false, 2000)
+    setTimeout(() => {
+      spinning_third.value = false;
+      if (!!newScore) {
+        credit.value += newScore
+      } else {
+        credit.value--;
+      }
+    }, 3000)
+
+  }, 1000)
 }
 </script>
 
@@ -62,14 +80,21 @@ const roll = () => {
     <div class="d-flex flex-over-center">
       <table>
         <tr>
-          <td><Cell :letter="first" /></td>
-          <td><Cell :letter="second" /></td>
-          <td><Cell :letter="third" /></td>
+          <td>
+            <Cell :letter="first" :spinning="spinning_first"/>
+          </td>
+          <td>
+            <Cell :letter="second" :spinning="spinning_second"/>
+          </td>
+          <td>
+            <Cell :letter="third" :spinning="spinning_third"/>
+          </td>
         </tr>
       </table>
       <img
           class="cursor-pointer"
-          @click="roll" src="./assets/joystick.png"
+          @click="roll"
+          src="./assets/joystick.png"
           alt="joystick"
           aria-label="joystick button"
           width="48" height="48"
@@ -97,7 +122,6 @@ table {
   border-spacing: 8px 8px;
 }
 
-
 td {
   border: 1px solid grey;
   font-size: 24px;
@@ -105,5 +129,6 @@ td {
   margin: 8px;
   display: inline-flex;
   justify-content: center;
+  overflow: hidden;
 }
 </style>
