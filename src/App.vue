@@ -1,22 +1,9 @@
 <script setup>
 import {ref} from 'vue'
+import {ITEMS, SCORES} from "./constants";
+import Cell from './components/Cell.vue'
 
 // states and variables
-const CHERRY = 'C';
-const LEMON = 'L';
-const ORANGE = 'O';
-const WATERMELON = 'W';
-const X = 'X';
-
-const ITEMS = [CHERRY, LEMON, ORANGE, WATERMELON]
-
-const SCORES = {
-  [CHERRY]: 10,
-  [LEMON]: 20,
-  [ORANGE]: 30,
-  [WATERMELON]: 40,
-}
-
 const first = ref('X');
 const second = ref('X');
 const third = ref('X');
@@ -71,32 +58,40 @@ const roll = () => {
 </script>
 
 <template>
-  <header>
-    <h1>slot machine game</h1>
-  </header>
-
   <main>
-    <table>
-      <tr>
-        <td>{{ first }}</td>
-        <td>{{ second }}</td>
-        <td>{{ third }}</td>
-      </tr>
-    </table>
+    <div class="d-flex flex-over-center">
+      <table>
+        <tr>
+          <td><Cell :letter="first" /></td>
+          <td><Cell :letter="second" /></td>
+          <td><Cell :letter="third" /></td>
+        </tr>
+      </table>
+      <img
+          class="cursor-pointer"
+          @click="roll" src="./assets/joystick.png"
+          alt="joystick"
+          aria-label="joystick button"
+          width="48" height="48"
+      />
+    </div>
 
-    <button @click="roll">roll</button>
+    <div class="d-flex flex-column flex-over-center mt-8">
 
-    <br>
-
-    <button>cash out</button>
-
-    <h1>game credit: {{ credit }}</h1>
-    <h1>user credit: {{ userCredit }}</h1>
+      <h1>game credit: {{ credit }}</h1>
+      <h1>user credit: {{ userCredit }}</h1>
+      <br>
+      <button>cash out</button>
+    </div>
   </main>
 </template>
 
 <style>
 @import './assets/base.css';
+
+main {
+  margin: 2rem auto;
+}
 
 table {
   border-spacing: 8px 8px;
@@ -107,66 +102,8 @@ td {
   border: 1px solid grey;
   font-size: 24px;
   width: 40px;
-  text-align: center;
   margin: 8px;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+  display: inline-flex;
+  justify-content: center;
 }
 </style>
