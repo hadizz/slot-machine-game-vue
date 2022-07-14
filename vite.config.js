@@ -11,5 +11,6 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  publicDir: process.env.NODE_ENV === "production" ? "/slot-machine-game-vue/" : "/",
 })

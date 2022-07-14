@@ -2,12 +2,15 @@
   "name": "slot-machine-game-vue",
   "version": "0.0.0",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "test:unit": "vitest --environment jsdom"
   },
   "dependencies": {
+    "gh-pages": "^4.0.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {
