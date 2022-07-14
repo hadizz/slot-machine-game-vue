@@ -17,6 +17,10 @@ jobs:
     needs: [unit_test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: deploy to github pages
-        run: npm i && npm run deploy
+      - name: installing npm packages
+        run: npm i
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
