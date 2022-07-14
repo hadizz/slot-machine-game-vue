@@ -15,6 +15,9 @@ const spinning_first = ref(false);
 const spinning_second = ref(false);
 const spinning_third = ref(false);
 
+const canCashOut = ref(true);
+const cashOutRef = ref(null);
+
 // methods
 const chance = (value) => {
   return Math.random() * 100 < value;
@@ -73,6 +76,23 @@ const roll = () => {
 
   }, 1000)
 }
+
+const cashOut = () => {
+  if (canCashOut.value) {
+    userCredit.value += credit.value;
+    credit.value = 0;
+  }
+}
+
+const hoverOnCashOut = () => {
+  if (chance(50)) {
+    const directions = ['top', 'down', 'left', 'right'];
+    const randomDirection = directions[random(0, directions.length - 1)]
+    const oldValue = +cashOutRef.value.style[randomDirection]?.replace('px', '')
+    cashOutRef.value.style[randomDirection] = `${oldValue + 300}px`;
+  }
+  canCashOut.value = chance(40)
+}
 </script>
 
 <template>
@@ -106,7 +126,8 @@ const roll = () => {
       <h1>game credit: {{ credit }}</h1>
       <h1>user credit: {{ userCredit }}</h1>
       <br>
-      <button>cash out</button>
+
+      <button ref="cashOutRef" class="cash-out" @click="cashOut" @mouseover="hoverOnCashOut">CASH OUT</button>
     </div>
   </main>
 </template>
@@ -130,5 +151,16 @@ td {
   display: inline-flex;
   justify-content: center;
   overflow: hidden;
+}
+
+.cash-out {
+  all: unset;
+  font-size: 16px;
+  color: white;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  position: relative;
 }
 </style>
